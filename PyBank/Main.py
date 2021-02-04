@@ -44,7 +44,7 @@ with open(csvpath) as csvfile:
     print(f'------------------')
     print(f'Total Months: {len(Months)}')
     print(f'Total Profit: {sum(Profit)}')
-    print(f'Average Change: {(sum(Profit) / len(Months))}')
+    print(f'Average Change: {(sum(Diff_Profit) / len(Months))}')
     print(f'Greatest Increase in Profit: {Months[Diff_Profit.index(max(Diff_Profit))]} {max(Diff_Profit)}')
     print(f'Greatest Decrease in Profit: {Months[Diff_Profit.index(min(Diff_Profit))]} {min(Diff_Profit)}')
     print(f'------------------')
