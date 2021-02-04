@@ -58,6 +58,7 @@ with open(csvpath) as csvfile:
 
     #Set difference form month to month
     Diff_Profit = 0
+    
     #Set greatest increase
     Greatest_Increase = 0
 
@@ -74,9 +75,12 @@ with open(csvpath) as csvfile:
         Average_Profit = Total_Profit / Month_Counter
 
         #Find difference form month to month
-        Diff_Profit
-        #Find the greatest increase from month to month
+        Diff_Profit = int(row[1]) - Diff_Profit
+        
+        print(f'diff {Diff_Profit}')
 
+        #Find the greatest increase from month to month
+        
 
 
 
