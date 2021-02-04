@@ -7,39 +7,7 @@ import csv
 
 csvpath = os.path.join('Resources', 'budget_data.csv')
 
-# # Define the function and have it accept the 'budget_data' as its sole parameter
-# def Print_Analysis(budget_data):
-#     # For readability, it can help to assign your values to variables with descriptive names
-#     Month = str(budget_data[0])
-#     Profit = int(budget_data[1])
-
-#     #Total months can be found by finding the length of the month column
-#     Total_Months = len(Month)
-    
-#     #Total profit can be found by summing the profit column
-#     Total_Profit = sum(Profit)
-
-#     #Average change can be found by averaging the listed difference
-#     Average_Profit = Total_Profit / Total_Months
-
-#     #Find greatest increase by finding max.
-#     Greatest_Increase = max(Profit)
-    
-#     #Find greatest increase by finding max.
-#     Greatest_Decrease = min(Profit)
-
-#     #Print analysis
-#     print(f'Financial Analysis')
-#     print(f'------------------')
-#     print(f'Total Months: {Total_Months}')
-#     print(f'Total Profit: {Total_Profit}')
-#     print(f'Average Change: {Average_Profit}')
-#     print(f'Greatest Increase in Profit: {Greatest_Increase}')
-#     print(f'Greatest Decrease in Profit: {Greatest_Decrease}')
-#     print(f'------------------')
-
 # Improved Reading using CSV module
-
 with open(csvpath) as csvfile:
 
     # CSV reader specifies delimiter and variable that holds contents
@@ -50,52 +18,33 @@ with open(csvpath) as csvfile:
     # Read the header row first (skip this step if there is now header)
     csv_header = next(csvreader)
 
-    #Define Row Counter for calc of total months
-    Month_Counter = 0
-
-    #Set initial total profit
-    Total_Profit = 0
-
-    #Set difference form month to month
-    Diff_Profit = 0
+    # Make a list of months
+    Months = []
+    # Make a list of profits...Jesus, Muhammed, Soloman, The Simpsons, etc.
+    Profit = []
+    # Add a 0 to the list to provide starting variable for calc of diff as second to last
+    Profit.append(0)
+    # Make a list of the Difference in profits from month to month...Christian, Muslim, Byzantine, Fox Tv, etc.
+    Diff_Profit = []
     
-    #Set greatest increase
-    Greatest_Increase = 0
-
     # Loop through the data
     for row in csvreader:
+        # Add Strings to Months list
+        Months.append(str(row[0]))
+        # Add Integers to Profit list
+        Profit.append(int(row[1]))
+        # Add the Calculated Difference to Diff_Profit List
+        Diff_Profit.append(Profit[-1] - Profit[-2])
 
-        #Find total months using row counter
-        Month_Counter = Month_Counter + 1
-
-        #Find sum of profit losses
-        Total_Profit = Total_Profit + int(row[1])
-
-        #Find average of changes
-        Average_Profit = Total_Profit / Month_Counter
-
-        #Find difference form month to month
-        Diff_Profit = int(row[1]) - Diff_Profit
-        
-        print(f'diff {Diff_Profit}')
-
-        #Find the greatest increase from month to month
-        
-
-
-
-
-    print(row[0])
+    # Remove the first element 0 previously added for calculation purposes
+    Profit.pop(0)
+    
+    # Print my final analysis
     print(f'Financial Analysis')
     print(f'------------------')
-    print(f'Total Months: {Month_Counter}')
-    print(f'Total Profit: {Total_Profit}')
-    print(f'Average Change: {Average_Profit}')
-    print(f'Greatest Increase in Profit: {Greatest_Increase}')
-    print(f'Greatest Decrease in Profit: {Greatest_Decrease}')
+    print(f'Total Months: {len(Months)}')
+    print(f'Total Profit: {sum(Profit)}')
+    print(f'Average Change: {(sum(Profit) / len(Months))}')
+    print(f'Greatest Increase in Profit: {Months[Diff_Profit.index(max(Diff_Profit))]} {max(Diff_Profit)}')
+    print(f'Greatest Decrease in Profit: {Months[Diff_Profit.index(min(Diff_Profit))]} {min(Diff_Profit)}')
     print(f'------------------')
-# with open(csvpath, 'r') as file_handler:
-#      lines = file_handler.read()
-#      print(lines)
-#      print(type(lines))
-#      Print_Analysis(lines)
