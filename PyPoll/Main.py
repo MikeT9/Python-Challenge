@@ -13,10 +13,24 @@ with open(csvpath) as csvfile:
 
     # CSV reader specifies delimiter and variable that holds contents
     csvreader = csv.reader(csvfile, delimiter=',')
-        
-    print(csvreader)
 
     # Read the header row first (skip this step if there is now header)
     csv_header = next(csvreader)
 
-    
+    # Make a list of voters by Voter ID
+    Voter = []
+
+    # Loop through data...Weeeeeeeeeee
+    for row in csvreader:
+
+            #Add Voter to list
+            Voter.append(row[0])
+
+    print(f'Election Results')
+    print(f'----------------')
+    print(f'Total Votes: {len(Voter)}')
+    print(f'----------------')
+    print(f'{name}{percent}{votes}')
+    print(f'----------------')
+    print(f'Winner: {name}')
+    print(f'----------------')
