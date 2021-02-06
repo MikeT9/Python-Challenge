@@ -41,9 +41,26 @@ with open(csvpath) as csvfile:
     # Print my final analysis
     print(f'Financial Analysis')
     print(f'------------------')
-    print(f'Total Months: {len(Months)}')
-    print(f'Total Profit: {sum(Profit)}')
-    print(f'Average Change: {(sum(Diff_Profit) / len(Diff_Profit)):.2f}')
-    print(f'Greatest Increase in Profit: {Months[Diff_Profit.index(max(Diff_Profit))]} {max(Diff_Profit)}')
-    print(f'Greatest Decrease in Profit: {Months[Diff_Profit.index(min(Diff_Profit))]} {min(Diff_Profit)}')
+    print(f'Total Months: ${len(Months)}')
+    print(f'Total Profit: ${sum(Profit)}')
+    print(f'Average Change: ${(sum(Diff_Profit) / len(Diff_Profit)):.2f}')
+    print(f'Greatest Increase in Profit: {Months[Diff_Profit.index(max(Diff_Profit))]} ${max(Diff_Profit)}')
+    print(f'Greatest Decrease in Profit: {Months[Diff_Profit.index(min(Diff_Profit))]} ${min(Diff_Profit)}')
     print(f'------------------')
+
+# Set variable for output file
+output_file = os.path.join("Analysis","Financial_Analysis.txt")
+
+#  Open the output file
+with open(output_file, "w", newline="") as datafile:
+    writer = csv.writer(datafile, delimiter=',')
+
+    # Write the Analysis
+    writer.writerow([f'Financial Analysis'])
+    writer.writerow([f'------------------'])
+    writer.writerow([f'Total Months: {len(Months)}'])
+    writer.writerow([f'Total Profit: ${sum(Profit)}'])
+    writer.writerow([f'Average Change: ${(sum(Diff_Profit) / len(Diff_Profit)):.2f}'])
+    writer.writerow([f'Greatest Increase in Profit: {Months[Diff_Profit.index(max(Diff_Profit))]} ${max(Diff_Profit)}'])
+    writer.writerow([f'Greatest Decrease in Profit: {Months[Diff_Profit.index(min(Diff_Profit))]} ${min(Diff_Profit)}'])
+    writer.writerow([f'------------------'])
