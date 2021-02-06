@@ -70,3 +70,23 @@ with open(csvpath) as csvfile:
     print(f'----------------')
     print(f'Winner: {Pol_List[T_Vote.index(max(T_Vote))]}')
     print(f'----------------')
+
+# Set variable for output file
+output_file = os.path.join("Analysis","Election_Analysis.txt")
+
+#  Open the output file
+with open(output_file, "w", newline="") as datafile:
+    writer = csv.writer(datafile, delimiter=',')
+
+    # Write the Analysis
+    writer.writerow([f'Election Results'])
+    writer.writerow([f'----------------'])
+    writer.writerow([f'Total Votes: {len(Voter)}'])
+    writer.writerow([f'----------------'])
+    writer.writerow([f'{Pol_List[0]}: {((T_Vote[0] / len(Voter)) * 100):.3f}% ({T_Vote[0]})'])
+    writer.writerow([f'{Pol_List[1]}: {((T_Vote[1] / len(Voter)) * 100):.3f}% ({T_Vote[1]})'])
+    writer.writerow([f'{Pol_List[2]}: {((T_Vote[2] / len(Voter)) * 100):.3f}% ({T_Vote[2]})'])
+    writer.writerow([f'{Pol_List[3]}: {((T_Vote[3] / len(Voter)) * 100):.3f}% ({T_Vote[3]})'])
+    writer.writerow([f'----------------'])
+    writer.writerow([f'Winner: {Pol_List[T_Vote.index(max(T_Vote))]}'])
+    writer.writerow([f'----------------'])
